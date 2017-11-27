@@ -69,6 +69,7 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `contas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
