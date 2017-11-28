@@ -23,11 +23,25 @@
         </ol>
       </nav>
 
-      <div class="row">
-        <div class="col-md-12">
-            <h1>Cadastro de Usuários</h1>
-        </div>
-      </div>
+<?php
+            if(isset($usuario->id)):
+?>
+              <div class="row">
+                <div class="col-md-12">
+                    <h1>Edição de Usuários</h1>
+                </div>
+              </div>
+<?php
+            else:
+?>
+              <div class="row">
+                <div class="col-md-12">
+                    <h1>Cadastro de Usuários</h1>
+                </div>
+              </div>
+<?php
+            endif
+?>
 
       <?php require_once VIEW_PATH.'/_includes/errorsMessage.php' ?>
 
@@ -63,7 +77,6 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
-
             $('.cpf').mask('000.000.000-00', {reverse: true});
 <?php
             if($errors):

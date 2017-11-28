@@ -23,11 +23,25 @@
         </ol>
       </nav>
 
-      <div class="row">
-        <div class="col-md-12">
-            <h1>Cadastro de Contas</h1>
-        </div>
-      </div>
+<?php
+            if(isset($conta->id)):
+?>
+              <div class="row">
+                <div class="col-md-12">
+                    <h1>Edição de Contas</h1>
+                </div>
+              </div>
+<?php
+            else:
+?>
+              <div class="row">
+                <div class="col-md-12">
+                    <h1>Cadastro de Contas</h1>
+                </div>
+              </div>
+<?php
+            endif
+?>
 
       <?php require_once VIEW_PATH.'/_includes/errorsMessage.php' ?>
 

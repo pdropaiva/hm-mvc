@@ -25,6 +25,7 @@ class UsuarioController extends Controller
     public function edita($id) {
 
         $usuario = new Usuario;
+        $errors = $this->getErrors();
 
         if(!$usuario->find($id)) {
 

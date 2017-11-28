@@ -14,6 +14,18 @@ function forgetSession($key) {
     unset($_SESSION[$key]);
 }
 
+function formataDataBanco($data) {
+
+    $dt = explode('/', $data);
+
+    return $dt[2].'-'.$dt[1].'-'.$dt[0];
+}
+
+function formataValor($valor) {
+
+    return str_replace(',', '.', str_replace('.', '', $valor));
+}
+
 function __autoload($classname) {
     $filename = BASE_PATH."/controllers/". $classname .".php";
 

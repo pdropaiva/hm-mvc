@@ -46,6 +46,10 @@ class Model
       return $this->db->affected_rows;
   }
 
+  public function getError() {
+      return $this->db->error;
+  }
+
   /**
    * Retorna a quantidade de linhas da última consulta
    *
@@ -112,8 +116,14 @@ class Model
 
       foreach ($result as $field => $value) {
 
-          if(!is_numeric($field))
-            $this->{$field} = $value;
+          if(!is_numeric($field)) {
+
+              if(isset($this->dates) && in_array($field, $this->dates) && $value) {
+                  $this->{$field} = new DateTime($value);
+              } else {
+                  $this->{$field} = $value;
+              }
+          }
       }
   }
 

@@ -47,8 +47,10 @@
                           <td><?= $conta->banco ?></td>
                           <td><?= $conta->getUsuarios()->showNomeFormated() ?></td>
                           <td>
-                            <a href="<?= HOME_URI.'/conta/edita.php?id='.$conta->id ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                            <a href="<?= HOME_URI.'/conta/excluir.php?id='.$conta->id ?>"><span class="alert-danger glyphicon glyphicon-remove delete" aria-hidden="true"></span></a>
+                            <a href="<?= HOME_URI.'/conta/transferencia.php?conta_id='.$conta->id ?>" title="Transferência"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>
+                            <a href="<?= HOME_URI.'/conta/extrato.php?id='.$conta->id ?>" title="Extrato"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+                            <a href="<?= HOME_URI.'/conta/edita.php?id='.$conta->id ?>" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                            <a href="<?= HOME_URI.'/conta/excluir.php?id='.$conta->id ?>" title="Excluir"><span class="alert-danger glyphicon glyphicon-remove delete" aria-hidden="true"></span></a>
                           </td>
                       </tr>
     <?php

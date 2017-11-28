@@ -107,4 +107,55 @@ class ContaController extends Controller
         header("Location: ".HOME_URI."/conta");
         exit;
     }
+
+    public function transferencia($conta_id, $id = null) {
+
+        $errors = $this->getErrors();
+        $conta = new Conta;
+        $conta->find($conta_id);
+        require_once VIEW_PATH.'/conta/transferenciaView.php';
+    }
+
+    public function efetuaTransferencia($conta_id, $id = null) {
+
+        $hasError = false;
+
+        if($this->request['valor'] == '' || $this->request['valor'] == 0) {
+
+            $this->setError('valor', 'Informe um valor válido.');
+            $hasError = true;
+        }
+
+        if($this->request['data_prevista'] == '' || !strtotime(formataDataBanco($this->request['data_prevista']))) {
+
+            $this->setError('data_prevista', 'Informe uma data de pagamento válida.');
+            $hasError = true;
+        }
+
+        if($hasError) {
+            header("Location: ".HOME_URI."/conta/transferencia.php?conta_id={$conta_id}");
+            exit;
+        }
+
+        $id = Transacao::cadastraTransacao($conta_id, $this->request);
+
+        if(!$id) {
+            $this->setError('nome', 'Erro ao efetuar transação, por favor tente novamente mais tarde.');
+            header("Location: ".HOME_URI."/conta/transferencia.php?conta_id={$conta_id}");
+            exit;
+        }
+
+        $this->setSuccesses('edita', "Transação no valor de {$this->request['valor']} sucesso!");
+
+        header("Location: ".HOME_URI."/conta");
+        exit;
+    }
+
+    public function extrato($id) {
+
+        $transacao = new Transacao;
+        $transacao->getTransacaoConta($id, $this->request);
+
+        require_once VIEW_PATH.'/conta/extratoView.php';
+    }
 }
